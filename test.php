@@ -34,20 +34,40 @@ $db = new DB;
 $conn = $db->getProdConn('crm_punti');
 
 
-/*$plog = new PickLog();
 
 
 
-$results2 = $conn->query("SELECT * FROM users WHERE bookid != 212");
-$text2 = urlencode($plog->sql2Text($results2) . "(" . $conn->affected_rows . " righe)");
 
-echo urldecode($text2);
+$sql = "SELECT * FROM users WHERE bookid = 212";
+$sql2 = "SELECT * FROM users WHERE bookid = 719";
+echo "<HR>";
+
+try {
+    $query = $conn->query($sql);
+    $query2 = $conn->query($sql2);
+    if ($query === FALSE || $query2 === FALSE) {
+        throw new Exception($conn->error);
+    }
+    else {
+        $result = $query->fetch_assoc();
+        $result2 = $query2->fetch_assoc();
+        print_r($result);
+        echo "<BR>";
+        print_r($result2);
+
+    }
+} catch(Exception $e) {
+    echo $e;
+}
 
 
-$res = $plog->sendLog(array('app' => 'AGENT','action' => 'GET__USER_NOT212','content' => $text2,'user' => 'Max', 'description' => 'utenti non 212', 'origin' => 'crm_punti_users', 'destination' => 'sito',));*/
 
 
-echo json_decode("Questa è una stringa di test per il decode!");
+
+
+
+
+
 
 
 

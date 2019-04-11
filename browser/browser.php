@@ -18,7 +18,7 @@ builder::Navbar('DataTable');
 
     <!-- view modal -->
     <div class="modal fade" id="viewLogModal" tabindex="-1" role="dialog" aria-labelledby="viewLogModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-fluid" role="document">
             <div class="modal-content" style="background-color: rgba(250,250,250,.85)">
                 <div class="modal-header" style="background-color: rgba(89,12,15,.85);color: white">
                     <h5 class="modal-title" id="exampleModalPreviewLabel">Dettaglio del log</h5>
