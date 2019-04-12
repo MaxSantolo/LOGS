@@ -27,8 +27,9 @@ class PickLog
     //scrive qualcosa in un file
     function write2File($app,$content,$action = '',$user = '',$description='', $origin='', $destination='') {
 
+        $app = strtoupper($app);
         $now = (new DateTime("Europe/Rome"))->format('d-m-Y H:i:s');
-        $logfile = $_SERVER['DOCUMENT_ROOT']."/logs/" . strtoupper($app). "/" . (new DateTime("Europe/Rome"))->format('Ymd') . "_" . $app . ".txt"; //genero il nome del file
+        echo $logfile = $_SERVER['DOCUMENT_ROOT']."/logs/" . $app. "/" . (new DateTime("Europe/Rome"))->format('Ymd') . "_" . $app . ".txt"; //genero il nome del file
         $text = "
 START: {$now}>---------------------------------
 APP: {$app}

@@ -12,13 +12,26 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/struct/classes/Log.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/tech/class/PHPMailerAutoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/struct/classes/Mail.php';
 
-(isset($_POST['app'])) ? $app = $_POST['app'] : Log::wLog("Chiamata senza applicazione specificata",'Errore');
-(isset($_POST['action'])) ? $action = $_POST['action'] : $action = 'UNIDENTIFIED';
-(isset($_POST['user'])) ? $user = $_POST['user'] : $user = 'SISTEMA';
-(isset($_POST['content'])) ? $content = $_POST['content'] : Log::wLog("Chiamata senza contenuto", "Errore");
-(isset($_POST['description'])) ? $description = $_POST['description'] : $description = $action;
-(isset($_POST['origin'])) ? $origin = $_POST['origin'] : $origin = $app;
-(isset($_POST['destination'])) ? $destination = $_POST['destination'] : $destination = '';
+if (isset($_POST['app'])) $app = $_POST['app'];
+else { (isset($_GET['app'])) ? $app = $_GET['app'] : Log::wLog("Chiamata senza applicazione specificata",'Errore'); }
+
+if (isset($_POST['action'])) $action = $_POST['action'];
+else { (isset($_GET['action'])) ? $action = $_GET['action'] : $action = 'UNIDENTIFIED'; }
+
+if (isset($_POST['user'])) $user = $_POST['user'];
+else { (isset($_GET['user'])) ? $user = $_GET['user'] : $user = 'SISTEMA'; }
+
+if (isset($_POST['content'])) $content = $_POST['content'];
+else { (isset($_GET['content'])) ? $content = json_decode($_GET['content']) : Log::wLog("Chiamata senza contenuto", "Errore"); }
+
+if (isset($_POST['description'])) $description = $_POST['description'];
+else { (isset($_GET['description'])) ? $description = $_GET['description'] : $description = $action; }
+
+if (isset($_POST['origin'])) $origin = $_POST['origin'];
+else { (isset($_GET['origin'])) ? $origin = $_GET['origin'] : $origin = strtoupper($app); }
+
+if (isset($_POST['destination'])) $destination = $_POST['destination'];
+else { (isset($_GET['destination'])) ? $destination = $_GET['destination'] : $destination = ""; }
 
 $plog = new PickLog();
 
